@@ -1,4 +1,4 @@
-import { newQuickJSWASMModuleFromVariant, shouldInterruptAfterDeadline } from 'quickjs-emscripten-core'
+import { newQuickJSWASMModuleFromVariant, newQuickJSAsyncWASMModuleFromVariant, shouldInterruptAfterDeadline, QuickJSSyncVariant, QuickJSAsyncVariant } from 'quickjs-emscripten-core'
 import { Arena } from './sync/index.js'
 
 import { provideConsole } from './provideConsole.js'
@@ -24,8 +24,13 @@ import type { OkResponseCheck } from './types/OkResponseCheck.js'
  * @param wasmVariantName name of the variant
  * @returns
  */
-export const quickJS = async (wasmVariantName = '@jitl/quickjs-ng-wasmfile-release-sync') => {
-	const module = await newQuickJSWASMModuleFromVariant(import(wasmVariantName))
+export const quickJS = async (
+	wasmVariantName: string | QuickJSSyncVariant | QuickJSAsyncVariant = '@jitl/quickjs-ng-wasmfile-release-sync',
+	sync = true
+) => {
+	const module = sync
+		? await newQuickJSWASMModuleFromVariant(typeof wasmVariantName === 'string' ? import(wasmVariantName) : wasmVariantName as QuickJSSyncVariant)
+		: await newQuickJSAsyncWASMModuleFromVariant(typeof wasmVariantName === 'string' ? import(wasmVariantName) : wasmVariantName as QuickJSAsyncVariant)
 
 	const createRuntime = async (runtimeOptions: RuntimeOptions = {}, existingFs?: IFs): Promise<InitResponseType> => {
 		const vm = module.newContext()
