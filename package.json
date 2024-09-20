@@ -1,6 +1,6 @@
 {
-	"name": "@sebastianwessel/quickjs",
-	"version": "1.3.0",
+	"name": "@jmfirth-arkane/quickjs",
+	"version": "1.3.1",
 	"description": "A typescript package to execute JavaScript and TypeScript code in a webassembly quickjs sandbox",
 	"type": "module",
 	"engines": {
@@ -56,13 +56,13 @@
 		"name": "Sebastian Wessel",
 		"url": "https://sebastianwessel.de"
 	},
-	"homepage": "https://github.com/sebastianwessel/quickjs#readme",
+	"homepage": "https://github.com/jmfirth-arkane/quickjs#readme",
 	"bugs": {
-		"url": "https://github.com/sebastianwessel/quickjs/issues"
+		"url": "https://github.com/jmfirth-arkane/quickjs/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/sebastianwessel/quickjs.git"
+		"url": "https://github.com/jmfirth-arkane/quickjs.git"
 	},
 	"license": "ISC",
 	"devDependencies": {
